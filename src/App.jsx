@@ -1,32 +1,35 @@
-import { useState, useTransition } from 'react';
-import Button from 'react-bootstrap/Button';
-import './App.css'
+import { useState, useTransition } from "react";
+import Button from "react-bootstrap/Button";
+import "./App.css";
+import AddUser from "./AddUser";
+import DisplayUser from "./DisplayUser";
+
 function App() {
-  //const [count, setCount] = useState(0)
+  const [user, setUser] = useState("");
   const [pending, startTransition] = useTransition();
 
   const handleButton = () => {
-    console.log("Button Clicked")     
+    console.log("Button Clicked");
     startTransition(async () => {
-      await new Promise((resolve) => { setTimeout(resolve, 3000) })     
-    })
-  }
+      await new Promise((resolve) => {
+        setTimeout(resolve, 3000);
+      });
+    });
+  };
   return (
     <>
-       <h1>Use react useTransition</h1>
-      <p>We are learning React js with version 19 .</p>
+      <h1>We are learning React js with version 19 .</h1>
 
       <br></br>
-      {
-        pending? 
-        <img src="https://cdn.dribbble.com/userupload/22076800/file/original-8e7ce77dec0edaf0105e8287038f6e60.gif" alt="React Logo" width="150" />
-        : null
-      }
-      
-      <br></br>
-      <Button variant="warning" disabled={pending} onClick={handleButton}>Click Me</Button>
+      <div
+        style={{ border: "2px solid black", margin: "20px", padding: "20px" }}
+      >
+        <h3>Share State Data {user}</h3>
+        <AddUser setuser={setUser} />
+        <DisplayUser user={user} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
