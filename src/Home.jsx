@@ -1,15 +1,7 @@
 function Home() {
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "Green",
-          padding: "20px",
-          textAlign: "center",
-        }}
-      >
-        <h3>Home Component</h3>
-      </div>
+      <h1 className="text-3xl font-bold underline">    Hello world! Header  </h1>
     </>
   );
 }

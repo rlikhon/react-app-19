@@ -67,8 +67,8 @@ body{
     padding: 10px;
 }
 
-.college .link{
-    ul li:hover{
+
+.college .link ul li:hover{
     background-color: rgb(210, 210, 235);
     color: white;
     border-radius: 10px;
@@ -81,4 +81,9 @@ body{
 
 .college .link a:hover{
     color: white;
+}
+
+.active{
+    color: white !important;
+    border-radius: 10px;
 }
