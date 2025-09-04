@@ -12,22 +12,25 @@ import Department from "./Department";
 import Class from "./Class";
 import Usres from "./Users";
 import UserDetails from "./UserDetails";
+import StudentList from "./StudentList";
+import StudentEdit from "./StudentEdit";
 
 function App() {
   return (
     <>
-      
       <Routes>
-      <Route element={<NavBar />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/users" element={<Usres />} />
-        <Route path="/users/:id" element={<UserDetails />} />
-      </Route>
+        <Route element={<NavBar />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/users" element={<Usres />} />
+          <Route path="/users/:id" element={<UserDetails />} />
+        </Route>
 
         <Route path="/college" element={<College />}>
           <Route index element={<Student />} />
+          <Route path="studentList" element={<StudentList />} />
+          <Route path="edit:id" element={<StudentEdit />} />
           <Route path="department" element={<Department />} />
           <Route path="class" element={<Class />} />
         </Route>

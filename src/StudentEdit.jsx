@@ -1,36 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
-function Student() {
+function StudentEdit() {
+  const {id} = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
 
+  useEffect(() => {
+    getStudentDetails();
+  }, []);
+
+  const getStudentDetails = async () => {
+    const response = await fetch(`http://localhost:3000/users/${id}`);
+    const data = await response.json();
+    setName(data.name);
+    setAge(data.age);
+    setEmail(data.email);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newStudent = { name, age, email };
-    console.log(newStudent);
-
-    const url = "http://localhost:3000/users";
-    await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newStudent),
-    })
-      .then((res) => {
-        if (res.ok) {
-          alert("Student added successfully");
-          return res.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
+    
   }
   return (
     <>
@@ -59,4 +50,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default StudentEdit;

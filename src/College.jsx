@@ -16,9 +16,12 @@ function College() {
         <h3>
           <Link to="/home">Go Back to Home</Link>{" "}
         </h3>
-        
+
         <NavLink className="link" to="">
           Students
+        </NavLink>
+        <NavLink className="link" to="studentList">
+          Student List
         </NavLink>
         <NavLink className="link" to="department">
           Departments
