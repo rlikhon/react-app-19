@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function StudentEdit() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getStudentDetails();
@@ -17,12 +18,36 @@ function StudentEdit() {
     setName(data.name);
     setAge(data.age);
     setEmail(data.email);
-  }
+  };
 
-  const handleSubmit = async (e) => {
+  const updateStudentData = async (e) => {
     e.preventDefault();
-    
-  }
+    const updatedStudent = { name, age, email };
+    console.log(updatedStudent);
+
+    await fetch(`http://localhost:3000/users/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedStudent),
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert("Student updated successfully");
+          navigate("/college/studentList"); // Navigate back to the student list after update
+          return res.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
+
   return (
     <>
       <div
@@ -34,15 +59,35 @@ function StudentEdit() {
       >
         <h3>Student Component</h3>
         <div>
-          <h4>Add New Student</h4>
+          <h4>Update Student</h4>
           <form>
-            <input type="text" onChange={(event)=>setName(event.target.value)} placeholder="Name" required />
+            <input
+              type="text"
+              onChange={(event) => setName(event.target.value)}
+              value={name}
+              placeholder="Name"
+              required
+            />
             <br />
-            <input type="text" onChange={(event)=>setEmail(event.target.value)} placeholder="Email" required />
+            <input
+              type="text"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              placeholder="Email"
+              required
+            />
             <br />
-            <input type="text" onChange={(event)=>setAge(event.target.value)} placeholder="Age" required />
+            <input
+              type="text"
+              onChange={(event) => setAge(event.target.value)}
+              value={age}
+              placeholder="Age"
+              required
+            />
             <br />
-            <button type="submit"  onClick={handleSubmit}>Submit</button>
+            <button type="submit" onClick={updateStudentData}>
+              Submit
+            </button>
           </form>
         </div>
       </div>

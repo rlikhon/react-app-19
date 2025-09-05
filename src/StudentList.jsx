@@ -39,7 +39,7 @@ export default function StudentList() {
   };
 
   const editStudent = (id) => {
-    navigate(`/college/edit/${id}`); // Navigate to the user details page for editing
+    navigate("/college/edit/"+id); // Navigate to the user details page for editing
   };
 
   return (

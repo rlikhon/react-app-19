@@ -30,7 +30,7 @@ function App() {
         <Route path="/college" element={<College />}>
           <Route index element={<Student />} />
           <Route path="studentList" element={<StudentList />} />
-          <Route path="edit:id" element={<StudentEdit />} />
+          <Route path="edit/:id" element={<StudentEdit />} />
           <Route path="department" element={<Department />} />
           <Route path="class" element={<Class />} />
         </Route>
