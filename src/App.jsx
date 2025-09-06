@@ -14,6 +14,7 @@ import Usres from "./Users";
 import UserDetails from "./UserDetails";
 import StudentList from "./StudentList";
 import StudentEdit from "./StudentEdit";
+import Signup from "./Signup";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/users" element={<Usres />} />
           <Route path="/users/:id" element={<UserDetails />} />
         </Route>
